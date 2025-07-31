@@ -2,15 +2,32 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { BookOpen, TestTube, Brain, BarChart, Plus, Activity } from "lucide-react";
 import { Link } from "react-router-dom";
+import { MdPreview } from "react-icons/md";
+
 
 export default function Home() {
   const quickActions = [
     {
       title: "Create New Rubric",
-      description: "Build a new evaluation rubric for healthcare LLM",
+      description: "Build a new evaluation rubric",
       icon: Plus,
       link: "/rubrics/create",
       color: "bg-primary",
+    },
+    
+    {
+      title: "Browse Rubrics",
+      description: "Explore all available evaluation rubrics",
+      icon: BookOpen,
+      link: "/rubrics/browse",
+      color: "bg-accent",
+    },
+    {
+      title: "Review New Rubric",
+      description: "Review rubric from CaseBuilder",
+      icon: MdPreview,
+      link: "/rubrics/create",
+      color: "bg-purple-500",
     },
     {
       title: "Run LLM Evaluation",
@@ -18,13 +35,6 @@ export default function Home() {
       icon: TestTube,
       link: "/test-cases/run",
       color: "bg-secondary-accent",
-    },
-    {
-      title: "Browse Rubrics",
-      description: "Explore all available evaluation rubrics",
-      icon: BookOpen,
-      link: "/rubrics/browse",
-      color: "bg-accent",
     },
     {
       title: "View Analytics",
@@ -49,9 +59,15 @@ export default function Home() {
       type: "test",
     },
     {
-      action: "Updated criteria",
+      action: "Updated rubric",
       item: "Patient Safety Assessment Rules",
       time: "6 hours ago",
+      type: "update",
+    },
+    {
+      action: "Reviewed rubric",
+      item: "Legacy Treatment Protocol v1.0",
+      time: "1 day ago",
       type: "update",
     },
     {
@@ -110,7 +126,7 @@ export default function Home() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {quickActions.map((action) => (
               <Button
                 key={action.title}

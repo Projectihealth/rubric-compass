@@ -5,25 +5,11 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Search, Filter } from "lucide-react";
 import Papa from "papaparse";
-import {
-  Dialog,
-  DialogTrigger,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
-
 
 export default function BrowseAll() {
   const [rubrics, setRubrics] = useState<any[]>([]);
-  const [allRubrics, setAllRubrics] = useState<any[]>([]); 
+  const [allRubrics, setAllRubrics] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [editOpen, setEditOpen] = useState(false);
-  const [selectedRubric, setSelectedRubric] = useState<any | null>(null);
-  const [editedName, setEditedName] = useState("");
-  const [rubricsToReview, setRubricsToReview] = useState<any[]>([]);
 
   useEffect(() => {
     fetch("/api/rubrics.csv")
@@ -88,7 +74,6 @@ export default function BrowseAll() {
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
           />
         </div>
-        
         <Button onClick={handleSearch} className="shrink-0">
           Search
         </Button>
@@ -100,48 +85,6 @@ export default function BrowseAll() {
 
       {/* Rubrics Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-1 gap-4">
-        <Dialog open={editOpen} onOpenChange={setEditOpen}>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Edit Rubric</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4">
-              <Textarea
-                value={editedName}
-                onChange={(e) => setEditedName(e.target.value)}
-                className="w-full"
-              />
-            </div>
-            <DialogHeader>
-              <DialogTitle>Notes/Reasoning</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4">
-              <Textarea
-              value=""
-              onChange={(e) => setEditedName(e.target.value)}
-              className="w-full"
-              />
-            </div>
-            <DialogFooter className="pt-4">
-              <Button
-                onClick={() => {
-                  if (selectedRubric) {
-                    const proposedEdit = {
-                      ...selectedRubric,
-                      proposedName: editedName,
-                      status: "pending_review",
-                      timestamp: new Date().toISOString(),
-                    };
-                    setRubricsToReview((prev) => [...prev, proposedEdit]);
-                    setEditOpen(false);
-                  }
-                }}
-              >
-                Submit for Review
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
         {rubrics.map((rubric) => (
           <Card key={rubric.id} className="shadow-card hover:shadow-professional transition-all p-3">
             <CardHeader>
@@ -157,17 +100,7 @@ export default function BrowseAll() {
                   </CardDescription>
                 </div>
                 <div className="flex flex-col items-end gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => {
-                      setSelectedRubric(rubric);
-                      setEditedName(rubric.name);
-                      setEditOpen(true);
-                    }}
-                  >
-                    Edit
-                  </Button>
+                  <input type="checkbox" className="h-4 w-4" />
                 </div>
               </div>
             </CardHeader>

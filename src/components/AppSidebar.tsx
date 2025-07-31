@@ -29,24 +29,34 @@ import {
 
 const navigationItems = [
   {
-    title: "🏠 Home",
+    title: "Home",
     url: "/",
     icon: Home,
     submenu: null,
   },
   {
-    title: "📚 Rubrics",
+    title: "Rubrics",
     url: "/rubrics",
     icon: BookOpen,
     submenu: [
       { title: "Browse All", url: "/rubrics/browse" },
       { title: "My Rubrics", url: "/rubrics/my" },
       { title: "Create New", url: "/rubrics/create" },
+      { title: "Review Submission", url: "/rubrics/review" },
       { title: "Archived", url: "/rubrics/archived" },
     ],
   },
   {
-    title: "🧪 Test Cases",
+    title: "Benchmark Cases",
+    url: "/benchmark-cases",
+    icon: Brain,
+    submenu: [
+      { title: "Browse All Cases", url: "/benchmark-cases/view" },
+      { title: "Versioning & Audits", url: "/benchmark-cases/audits" },
+    ],
+  },
+  {
+    title: "Test Cases",
     url: "/test-cases",
     icon: TestTube,
     submenu: [
@@ -55,18 +65,9 @@ const navigationItems = [
       { title: "Manage Test Sets", url: "/test-cases/manage" },
     ],
   },
+  
   {
-    title: "🧠 Criteria & Logic",
-    url: "/criteria-logic",
-    icon: Brain,
-    submenu: [
-      { title: "Rule Builder", url: "/criteria-logic/builder" },
-      { title: "LLM Suggestions", url: "/criteria-logic/suggestions" },
-      { title: "Versioning & Audits", url: "/criteria-logic/audits" },
-    ],
-  },
-  {
-    title: "📈 Analytics",
+    title: "Analytics",
     url: "/analytics",
     icon: BarChart,
     submenu: [
@@ -76,7 +77,7 @@ const navigationItems = [
     ],
   },
   {
-    title: "⚙️ Settings",
+    title: "Settings",
     url: "/settings",
     icon: Settings,
     submenu: [
